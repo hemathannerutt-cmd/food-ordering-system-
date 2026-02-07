@@ -30,6 +30,21 @@
       text-align: center;
     }
 
+    /* SEARCH + SORT */
+    .controls {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    #searchBox, #sortOption {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid gray;
+      margin: 10px;
+      width: 250px;
+    }
+
     .menu {
       display: flex;
       gap: 20px;
@@ -46,6 +61,10 @@
       text-align: center;
     }
 
+    .card h3 {
+      margin: 10px 0;
+    }
+
     button {
       background: #ff5722;
       border: none;
@@ -60,6 +79,7 @@
       background: #e64a19;
     }
 
+    /* CART */
     .cart {
       margin-top: 40px;
       background: white;
@@ -114,38 +134,58 @@
   </header>
 
   <div class="container">
+
     <h2>Menu</h2>
 
-    <div class="menu">
-      <div class="card">
+    <!-- SEARCH + SORT CONTROLS -->
+    <div class="controls">
+      <input 
+        type="text" 
+        id="searchBox"
+        placeholder="Search food item..."
+        onkeyup="searchFood()"
+      >
+
+      <select id="sortOption" onchange="sortMenu()">
+        <option value="default">Sort By</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+      </select>
+    </div>
+
+    <!-- MENU ITEMS -->
+    <div class="menu" id="menuList">
+
+      <div class="card foodItem" data-price="100">
         <h3>🍔 Burger</h3>
         <p>Price: ₹100</p>
         <button onclick="addToCart('Burger',100)">Add to Cart</button>
       </div>
 
-      <div class="card">
+      <div class="card foodItem" data-price="200">
         <h3>🍕 Pizza</h3>
         <p>Price: ₹200</p>
         <button onclick="addToCart('Pizza',200)">Add to Cart</button>
       </div>
 
-      <div class="card">
+      <div class="card foodItem" data-price="50">
         <h3>☕ Coffee</h3>
         <p>Price: ₹50</p>
         <button onclick="addToCart('Coffee',50)">Add to Cart</button>
       </div>
 
-      <div class="card">
+      <div class="card foodItem" data-price="80">
         <h3>🍟 Fries</h3>
         <p>Price: ₹80</p>
         <button onclick="addToCart('Fries',80)">Add to Cart</button>
       </div>
 
-      <div class="card">
+      <div class="card foodItem" data-price="60">
         <h3>🥤 Cold Drink</h3>
         <p>Price: ₹60</p>
         <button onclick="addToCart('Cold Drink',60)">Add to Cart</button>
       </div>
+
     </div>
 
     <!-- CART SECTION -->
@@ -153,18 +193,24 @@
       <h2>Your Cart 🛒</h2>
       <ul id="cartItems"></ul>
 
-      <p class="total">Total Bill: ₹<span id="total">0</span></p>
+      <p class="total">
+        Total Bill: ₹<span id="total">0</span>
+      </p>
 
-      <button class="order-btn" onclick="placeOrder()">Place Order</button>
+      <button class="order-btn" onclick="placeOrder()">
+        Place Order
+      </button>
 
       <p class="message" id="orderMessage"></p>
     </div>
+
   </div>
 
   <script>
     let totalBill = 0;
     let cart = [];
 
+    /* ADD TO CART */
     function addToCart(item, price) {
       cart.push({ name: item, cost: price });
 
@@ -174,6 +220,7 @@
       displayCart();
     }
 
+    /* DISPLAY CART */
     function displayCart() {
       let cartList = document.getElementById("cartItems");
       cartList.innerHTML = "";
@@ -188,6 +235,7 @@
       });
     }
 
+    /* REMOVE ITEM */
     function removeItem(index) {
       totalBill -= cart[index].cost;
       cart.splice(index, 1);
@@ -196,6 +244,7 @@
       displayCart();
     }
 
+    /* PLACE ORDER */
     function placeOrder() {
       if (cart.length === 0) {
         alert("Your cart is empty!");
@@ -207,13 +256,44 @@
 
       cart = [];
       totalBill = 0;
+
       document.getElementById("total").innerText = totalBill;
       document.getElementById("cartItems").innerHTML = "";
+    }
+
+    /* SEARCH FUNCTION */
+    function searchFood() {
+      let input = document.getElementById("searchBox").value.toLowerCase();
+      let items = document.getElementsByClassName("foodItem");
+
+      for (let i = 0; i < items.length; i++) {
+        let itemName = items[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+
+        if (itemName.includes(input)) {
+          items[i].style.display = "block";
+        } else {
+          items[i].style.display = "none";
+        }
+      }
+    }
+
+    /* SORT FUNCTION */
+    function sortMenu() {
+      let menu = document.getElementById("menuList");
+      let items = Array.from(menu.getElementsByClassName("foodItem"));
+
+      let option = document.getElementById("sortOption").value;
+
+      if (option === "low") {
+        items.sort((a, b) => a.dataset.price - b.dataset.price);
+      }
+      else if (option === "high") {
+        items.sort((a, b) => b.dataset.price - a.dataset.price);
+      }
+
+      items.forEach(item => menu.appendChild(item));
     }
   </script>
 
 </body>
 </html>
-
-
-
