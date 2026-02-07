@@ -264,7 +264,7 @@
     /* SEARCH FUNCTION */
     function searchFood() {
       let input = document.getElementById("searchBox").value.toLowerCase();
-      let items = document.getElementsByClassName("foodItem");
+      let items = document.getElementsByClasName("foodItem");
 
       for (let i = 0; i < items.length; i++) {
         let itemName = items[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
@@ -277,21 +277,7 @@
       }
     }
 
-    /* SORT FUNCTION */
-    function sortMenu() {
-      let menu = document.getElementById("menuList");
-      let items = Array.from(menu.getElementsByClassName("foodItem"));
-
-      let option = document.getElementById("sortOption").value;
-
-      if (option === "low") {
-        items.sort((a, b) => a.dataset.price - b.dataset.price);
-      }
-      else if (option === "high") {
-        items.sort((a, b) => b.dataset.price - a.dataset.price);
-      }
-
-      items.forEach(item => menu.appendChild(item));
+   
     }
   </script>
 
