@@ -1,35 +1,56 @@
+let cart = [];
+let total = 0;
+
 async function loadFoods() {
   try {
-    const res = await fetch("http://localhost:3000/foods");
-
-    if (!res.ok) {
-      throw new Error("Foods API not working!");
-    }
-
+    const res = await fetch("foods.json"); // local file
     const foods = await res.json();
-    console.log("Foods Loaded:", foods);
 
-    const foodList = document.getElementById("food-list");
-    foodList.innerHTML = "";
+    const list = document.getElementById("food-list");
+    list.innerHTML = "";
 
     foods.forEach(food => {
-      const card = document.createElement("div");
-      card.className = "food-card";
+      const div = document.createElement("div");
+      div.className = "food-card";
 
-      card.innerHTML = `
-        <img src="${food.image}" />
+      div.innerHTML = `
+        <img src="${food.image}" alt="${food.name}">
         <h3>${food.name}</h3>
         <p>₹${food.price}</p>
-        <button>Add to Cart</button>
+        <button onclick="addToCart('${food.name}', ${food.price})">
+          Add to Cart
+        </button>
       `;
 
-      foodList.appendChild(card);
+      list.appendChild(div);
     });
-
-  } catch (error) {
-    alert("❌ Error Loading Foods: " + error.message);
-    console.log(error);
+  } catch (err) {
+    alert("❌ Foods not loading. Check foods.json path!");
+    console.log(err);
   }
+}
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+  total += price;
+  updateCart();
+}
+
+function updateCart() {
+  const cartList = document.getElementById("cart");
+  cartList.innerHTML = "";
+
+  cart.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - ₹${item.price}`;
+    cartList.appendChild(li);
+  });
+
+  document.getElementById("total").innerText = `Total: ₹${total}`;
+}
+
+function placeOrder() {
+  alert("✅ Order Placed! (GitHub Pages Demo)");
 }
 
 loadFoods();
