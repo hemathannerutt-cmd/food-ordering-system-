@@ -1,45 +1,134 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  font-family: Arial, sans-serif;
+  background: #fff7f2;
 }
 
-header {
-  background: #ff5722;
+/* HEADER */
+.top-header {
+  background: linear-gradient(to right, #ff512f, #dd2476);
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
 }
 
-.food-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.top-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
 }
 
+.top-header p {
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+/* MAIN AREA */
+.main-area {
+  padding: 30px;
+}
+
+/* SECTION TITLE */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* FOOD GRID */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+  padding: 10px;
+}
+
+/* FOOD CARD */
 .food-card {
   background: white;
-  padding: 15px;
-  border-radius: 15px;
-  width: 200px;
+  border-radius: 18px;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+  overflow: hidden;
   text-align: center;
-  box-shadow: 0px 5px 10px gray;
+  transition: 0.3s;
+}
+
+.food-card:hover {
+  transform: scale(1.05);
 }
 
 .food-card img {
-  width: 120px;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
 }
 
-button {
+.food-card h3 {
+  margin: 10px 0;
+  font-size: 1.3rem;
+}
+
+.food-card p {
+  font-size: 1.1rem;
+  color: #ff512f;
+  font-weight: bold;
+}
+
+/* BUTTON */
+.food-card button {
   background: #28a745;
   color: white;
-  padding: 12px 20px;
   border: none;
-  margin-top: 15px;
-  cursor: pointer;
+  padding: 12px 18px;
+  margin-bottom: 15px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-button:hover {
+.food-card button:hover {
   background: #218838;
 }
+
+/* CART BOX */
+.cart-box {
+  margin-top: 50px;
+  padding: 25px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.cart-items {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-items li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.empty-cart {
+  color: gray;
+}
+
+/* ORDER BUTTON */
+.order-btn {
+  background: #ff512f;
+  color: white;
+  padding: 14px 25px;
+  border: none;
+  margin-top: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.order-btn:hover {
+  background: #dd2476;
+}
+
