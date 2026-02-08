@@ -1,0 +1,23 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "name": "Pizza",
+      "price": 199,
+      "image": "https://i.ibb.co/4pDNDk1/pizza.png"
+    },
+    {
+      "id": 2,
+      "name": "Burger",
+      "price": 99,
+      "image": "https://i.ibb.co/4ZyJ6yG/burger.png"
+    },
+    {
+      "id": 3,
+      "name": "Biryani",
+      "price": 149,
+      "image": "https://i.ibb.co/QvJpL0Q/biryani.png"
+    }
+  ],
+  "orders": []
+}
