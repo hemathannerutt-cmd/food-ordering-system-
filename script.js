@@ -8,6 +8,8 @@ async function loadFoods() {
 
   const foodList = document.getElementById("food-list");
 
+  foodList.innerHTML = "";
+
   foods.forEach(food => {
     const card = document.createElement("div");
     card.className = "food-card";
@@ -16,7 +18,7 @@ async function loadFoods() {
       <img src="${food.image}" alt="${food.name}">
       <h3>${food.name}</h3>
       <p>₹${food.price}</p>
-      <button onclick="addToCart(${food.id}, '${food.name}', ${food.price})">
+      <button onclick="addToCart('${food.name}', ${food.price})">
         Add to Cart
       </button>
     `;
@@ -26,17 +28,21 @@ async function loadFoods() {
 }
 
 // Add to Cart
-function addToCart(id, name, price) {
-  cart.push({ id, name, price });
+function addToCart(name, price) {
+  cart.push({ name, price });
   totalPrice += price;
 
   updateCart();
 }
 
-// Update Cart UI
+// Update Cart
 function updateCart() {
   const cartList = document.getElementById("cart");
   cartList.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartList.innerHTML = `<p class="empty-cart">Cart is empty...</p>`;
+  }
 
   cart.forEach(item => {
     const li = document.createElement("li");
@@ -77,3 +83,4 @@ async function placeOrder() {
 }
 
 loadFoods();
+
