@@ -2,22 +2,23 @@
   "foods": [
     {
       "id": 1,
-      "name": "Pizza",
+      "name": "Cheese Pizza",
       "price": 199,
-      "image": "https://i.ibb.co/4pDNDk1/pizza.png"
+      "image": "https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg"
     },
     {
       "id": 2,
       "name": "Burger",
       "price": 99,
-      "image": "https://i.ibb.co/4ZyJ6yG/burger.png"
+      "image": "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg"
     },
     {
       "id": 3,
-      "name": "Biryani",
+      "name": "Chicken Biryani",
       "price": 149,
-      "image": "https://i.ibb.co/QvJpL0Q/biryani.png"
+      "image": "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg"
     }
   ],
   "orders": []
 }
+
