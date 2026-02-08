@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Cheese Pizza",
+    "price": 199,
+    "image": "pizza.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Veg Burger",
+    "price": 99,
+    "image": "burger.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Chicken Biryani",
+    "price": 149,
+    "image": "biryani.jpg"
+  }
+]
