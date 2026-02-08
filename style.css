@@ -1,134 +1,201 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff7f2;
-}
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+  }
 
-/* HEADER */
-.top-header {
-  background: linear-gradient(to right, #ff512f, #dd2476);
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
+  /* HEADER */
+  header {
+    background: linear-gradient(90deg, #ff0080, #7928ca, #2afadf);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
 
-.top-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-}
+  header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
 
-.top-header p {
-  margin-top: 8px;
-  font-size: 1.1rem;
-}
+  /* SEARCH */
+  #searchBox {
+    padding: 12px;
+    width: 240px;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    font-size: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
 
-/* MAIN AREA */
-.main-area {
-  padding: 30px;
-}
+  /* CONTAINER */
+  .container {
+    width: 90%;
+    margin: auto;
+    padding: 25px;
+  }
 
-/* SECTION TITLE */
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 25px;
-  color: #333;
-}
+  h2 {
+    text-align: center;
+    font-size: 30px;
+    color: #333;
+    margin-top: 25px;
+  }
 
-/* FOOD GRID */
-.food-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 25px;
-  padding: 10px;
-}
+  /* MENU */
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+  }
 
-/* FOOD CARD */
-.food-card {
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
-  overflow: hidden;
-  text-align: center;
-  transition: 0.3s;
-}
+  /* FOOD CARD */
+  .card {
+    background: white;
+    width: 260px;
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
 
-.food-card:hover {
-  transform: scale(1.05);
-}
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    background: linear-gradient(to right, #ff512f, #dd2476, #1fa2ff);
+  }
 
-.food-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  }
 
-.food-card h3 {
-  margin: 10px 0;
-  font-size: 1.3rem;
-}
+  .card h3 {
+    margin: 12px 0;
+    font-size: 22px;
+    color: #444;
+  }
 
-.food-card p {
-  font-size: 1.1rem;
-  color: #ff512f;
-  font-weight: bold;
-}
+  .card p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff0080;
+  }
 
-/* BUTTON */
-.food-card button {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+  /* BUTTONS */
+  button {
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    background: linear-gradient(to right, #36d1dc, #5b86e5);
+    transition: 0.3s;
+  }
 
-.food-card button:hover {
-  background: #218838;
-}
+  button:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+  }
 
-/* CART BOX */
-.cart-box {
-  margin-top: 50px;
-  padding: 25px;
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
+  /* CART */
+  .cart {
+    margin-top: 50px;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    border-top: 6px solid #7928ca;
+  }
 
-.cart-items {
-  list-style: none;
-  padding: 0;
-}
+  .cart h2 {
+    color: #7928ca;
+  }
 
-.cart-items li {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
+  .cart ul {
+    list-style: none;
+    padding: 0;
+  }
 
-.empty-cart {
-  color: gray;
-}
+  .cart li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+  }
 
-/* ORDER BUTTON */
-.order-btn {
-  background: #ff512f;
-  color: white;
-  padding: 14px 25px;
-  border: none;
-  margin-top: 15px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1rem;
-}
+  /* Quantity Buttons */
+  .qty-btn {
+    padding: 6px 12px;
+    font-size: 15px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ff512f, #dd2476);
+  }
 
-.order-btn:hover {
-  background: #dd2476;
-}
+  /* TOTAL */
+  .total {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #ff0080;
+  }
+
+  /* CHECKOUT */
+  .checkout {
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .checkout input, textarea {
+    width: 85%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  textarea {
+    resize: none;
+    height: 80px;
+  }
+
+  /* SUCCESS MESSAGE */
+  .message {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    color: green;
+  }
+</style>
+
 
