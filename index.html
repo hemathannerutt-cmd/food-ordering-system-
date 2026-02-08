@@ -3,29 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Delish 🍴</title>
+  <title>Daily Delish 🍔</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
+  <!-- HEADER -->
+  <header class="top-header">
     <h1>🍔 Daily Delish Food Ordering</h1>
     <p>Order your favorite food instantly!</p>
   </header>
 
-  <main>
-    <h2>Menu</h2>
-    <div id="food-list" class="food-container"></div>
+  <!-- MAIN SECTION -->
+  <main class="main-area">
 
-    <h2>🛒 Cart</h2>
-    <ul id="cart"></ul>
-    <h3 id="total">Total: ₹0</h3>
+    <!-- MENU -->
+    <section>
+      <h2 class="section-title">🍕 Explore Our Menu</h2>
+      <div id="food-list" class="food-grid">
+        <!-- Food Cards will come here -->
+      </div>
+    </section>
 
-    <button onclick="placeOrder()">Place Order</button>
-    <p id="message"></p>
+    <!-- CART -->
+    <section class="cart-box">
+      <h2>🛒 Your Cart</h2>
+
+      <ul id="cart" class="cart-items">
+        <p class="empty-cart">Cart is empty...</p>
+      </ul>
+
+      <h3 id="total">Total: ₹0</h3>
+
+      <button class="order-btn" onclick="placeOrder()">
+        Place Order ✅
+      </button>
+
+      <p id="message"></p>
+    </section>
+
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
