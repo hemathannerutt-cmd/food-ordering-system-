@@ -1,85 +1,35 @@
-let cart = [];
-let totalPrice = 0;
-
-// Load Foods
 async function loadFoods() {
-  const res = await fetch("/foods");
-  const foods = await res.json();
+  try {
+    const res = await fetch("http://localhost:3000/foods");
 
-  const foodList = document.getElementById("food-list");
+    if (!res.ok) {
+      throw new Error("Foods API not working!");
+    }
 
-  foodList.innerHTML = "";
+    const foods = await res.json();
+    console.log("Foods Loaded:", foods);
 
-  foods.forEach(food => {
-    const card = document.createElement("div");
-    card.className = "food-card";
+    const foodList = document.getElementById("food-list");
+    foodList.innerHTML = "";
 
-    card.innerHTML = `
-      <img src="${food.image}" alt="${food.name}">
-      <h3>${food.name}</h3>
-      <p>₹${food.price}</p>
-      <button onclick="addToCart('${food.name}', ${food.price})">
-        Add to Cart
-      </button>
-    `;
+    foods.forEach(food => {
+      const card = document.createElement("div");
+      card.className = "food-card";
 
-    foodList.appendChild(card);
-  });
-}
+      card.innerHTML = `
+        <img src="${food.image}" />
+        <h3>${food.name}</h3>
+        <p>₹${food.price}</p>
+        <button>Add to Cart</button>
+      `;
 
-// Add to Cart
-function addToCart(name, price) {
-  cart.push({ name, price });
-  totalPrice += price;
+      foodList.appendChild(card);
+    });
 
-  updateCart();
-}
-
-// Update Cart
-function updateCart() {
-  const cartList = document.getElementById("cart");
-  cartList.innerHTML = "";
-
-  if (cart.length === 0) {
-    cartList.innerHTML = `<p class="empty-cart">Cart is empty...</p>`;
+  } catch (error) {
+    alert("❌ Error Loading Foods: " + error.message);
+    console.log(error);
   }
-
-  cart.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = `${item.name} - ₹${item.price}`;
-    cartList.appendChild(li);
-  });
-
-  document.getElementById("total").innerText =
-    `Total: ₹${totalPrice}`;
-}
-
-// Place Order
-async function placeOrder() {
-  if (cart.length === 0) {
-    alert("Cart is empty!");
-    return;
-  }
-
-  const orderData = {
-    items: cart,
-    total: totalPrice,
-    date: new Date()
-  };
-
-  const res = await fetch("/order", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(orderData)
-  });
-
-  const result = await res.json();
-
-  document.getElementById("message").innerText = result.message;
-
-  cart = [];
-  totalPrice = 0;
-  updateCart();
 }
 
 loadFoods();
